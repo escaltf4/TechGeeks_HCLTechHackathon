@@ -1,8 +1,8 @@
-# ⚡ Next Bill Prediction & High-Bill Detection
+#  Next Bill Prediction & High-Bill Detection
 
 An end-to-end machine learning project that analyzes customer billing behavior, predicts the next bill amount from historical information, and flags potential bill shock using a **2.5× six-month historical baseline**. The final model is served through a simple two-page **Streamlit dashboard**.
 
-## 🎯 Objective
+##  Objective
 
 The project solves four practical problems:
 
@@ -11,7 +11,7 @@ The project solves four practical problems:
 3. Compare multiple regression models and save the strongest model.
 4. Let a user interactively predict the next bill and determine whether it is unusually high.
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 ```text
 next_bill_prediction_github/
@@ -36,7 +36,7 @@ next_bill_prediction_github/
     └── bill_prediction.png
 ```
 
-## 🔄 End-to-End Workflow
+## End-to-End Workflow
 
 ```text
 Billing CSV
@@ -84,13 +84,13 @@ Streamlit Dashboard
       2.5× High-Bill Rule
 ```
 
-## 📊 Dataset
+##  Dataset
 
 The included dataset contains **12,000 monthly billing records for 1,000 customers**. Important fields include bill amount, usage, peak usage share, unit price, fixed charge, plan type, customer segment, region, household size, temperature, support tickets, tariff-change information, and billing month.
 
 The dashboard also reports missing values, column types, unique values, and raw record previews.
 
-## 🔍 Step 1 — Exploratory Data Analysis
+##  Step 1 — Exploratory Data Analysis
 
 The EDA focuses on the most useful business and modeling questions:
 
@@ -113,7 +113,7 @@ The EDA focuses on the most useful business and modeling questions:
 
 ![Customer Analysis](assets/customer_analysis.png)
 
-## 🧠 Step 2 — Feature Engineering
+##  Step 2 — Feature Engineering
 
 Historical features are generated from each customer's monthly records. The main engineered variables include:
 
@@ -130,7 +130,7 @@ month, sin_month, cos_month, tenure_months
 
 Rolling and lag features allow the model to learn recent billing behavior without relying on future information.
 
-## ⏳ Step 3 — Chronological Validation
+##  Step 3 — Chronological Validation
 
 This is a forecasting problem, so records are kept in time order. Earlier periods are used for training and later periods are used for evaluation instead of randomly mixing future and historical observations.
 
@@ -140,7 +140,7 @@ Past customer history → Model training → Future period → Evaluation
 
 This makes the reported model performance much closer to the real deployment scenario.
 
-## 🤖 Step 4 — Model Training
+##  Step 4 — Model Training
 
 Four regression models are compared in the notebook:
 
@@ -164,7 +164,7 @@ models/best_model.joblib
 
 The Streamlit application loads this model directly, so it does not retrain every time the app starts.
 
-## 🚨 Step 5 — High-Bill Detection
+##  Step 5 — High-Bill Detection
 
 After predicting the next bill, the system calculates the customer's recent six-month average.
 
@@ -181,11 +181,11 @@ Predicted next bill ≤ 2.5 × six-month average  →  NORMAL BILL
 
 The business threshold is deliberately simple so the prediction can be interpreted immediately.
 
-## 🖥️ Streamlit Dashboard
+##  Streamlit Dashboard
 
 The application has only **two pages**, keeping the deployment simple and focused.
 
-### 1. 📊 Dataset & EDA
+### 1.  Dataset & EDA
 
 This page contains:
 
@@ -201,7 +201,7 @@ This page contains:
 - Relationship plots
 - Correlation heatmap
 
-### 2. 🔮 Bill Prediction
+### 2.  Bill Prediction
 
 The prediction page:
 
@@ -218,7 +218,7 @@ The prediction page:
 
 ![Bill Prediction Dashboard](assets/bill_prediction.png)
 
-## 🧾 Prediction Inputs
+##  Prediction Inputs
 
 The dashboard accepts or derives inputs such as:
 
@@ -237,7 +237,7 @@ The dashboard accepts or derives inputs such as:
 - Historical bill and usage lags
 - Rolling bill and usage statistics
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Area | Tools |
 |---|---|
@@ -248,7 +248,7 @@ The dashboard accepts or derives inputs such as:
 | App | Streamlit |
 | Notebook | Jupyter |
 
-## 🚀 Run Locally
+##  Run Locally
 
 ### 1. Clone the repository
 
@@ -293,7 +293,7 @@ Then open the local Streamlit URL shown in the terminal, usually:
 http://localhost:8501
 ```
 
-## 📓 Retrain the Model
+##  Retrain the Model
 
 Open:
 
@@ -303,7 +303,7 @@ notebooks/model_training.ipynb
 
 and run the cells in order. The notebook contains the complete modeling workflow from EDA to final model saving.
 
-## 🔐 Leakage Prevention
+##  Leakage Prevention
 
 To make the forecasting result defensible:
 
@@ -312,7 +312,7 @@ To make the forecasting result defensible:
 - The held-out period comes after the training period.
 - The final app reconstructs features only from information available in the customer's history and user inputs.
 
-## 💡 Key Project Value
+##  Key Project Value
 
 This project demonstrates an end-to-end data science workflow rather than only a model notebook:
 
@@ -322,7 +322,7 @@ Data → EDA → Feature Engineering → ML → Evaluation → Saved Model → I
 
 The result is a practical prototype that can help identify potential bill shock early and provide an understandable customer-level forecast.
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 Potential extensions include:
 
@@ -335,7 +335,7 @@ Potential extensions include:
 - More historical months and external weather data
 - Dedicated anomaly-scoring model
 
-## ▶️ Quick Start
+##  Quick Start
 
 ```bash
 pip install -r requirements.txt
